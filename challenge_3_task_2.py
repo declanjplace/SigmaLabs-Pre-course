@@ -1,63 +1,48 @@
 
-
-Jane_Doe = {
-    'Name' : 'Jane Doe',
-    'Age' : 42,
-    'Employed?' : 'Yes'
-}
-
-Tom_Smith = {
-    'Name' : 'Tom Smith', 
-    'Age' : 18,
-'Employed?' : 'Yes'
-}
-
-Mariam_Coulter = {
-    'Name' : 'Mariam Coulter', 
-    'Age' : 66,
-    'Employed?' : 'No'
-}
-
-Gregory_Tims = {
-    'Name' : 'Gregory Tims',
-    'Age' : 8,
-    'Employed?' : 'No'
-}
-
-people = [Jane_Doe, Tom_Smith, Mariam_Coulter, Gregory_Tims]
-
-def print_data_in_list():
-    for person in people:
-        print('Name: {}\nAge: {}\nEmployed: {}\n'.format(person['Name'], person['Age'], person['Employed?']))
-
-print_data_in_list()
-while True:
-    prompt = input('Would you like to Add or Remove data from the dictionary? ')
-    if prompt == 'Add':
-        new_first_name = input('Please enter the persons first name: ')
-        new_last_name = input('Please enter the persons last name: ')
-        new_full_name = new_first_name + ' ' + new_last_name
-        new_age = int(input('Please enter the persons age: '))
-        new_employed = input('Please enter the persons employment status, Yes or No: ')
-        new_person = {
-            'Name' : new_full_name,
-            'Age' : new_age,
-            'Employed?' : new_employed
-        }
-        people.append(new_person)
-        print_data_in_list()
-    elif prompt == 'Remove':
-        remove = input('Who would you like to remove? ')
-        for person in people:
-            if remove == person['Name']:
-                people.pop(person)
-            else:
-                remove = input('Data not found. Please try again: ')
-                continue
-        print_data_in_list()
+def ask_user_for_number():
+    number = input('Please enter an number: ')
+    if number == '':
+        print('Error! No input.')    
+    elif number.isdigit() == False:
+        print('Error! Input is not an integer.')
     else:
-        print('Invalid input! Please input either "Add" or "Remove": ')
-        continue
-            
+        print('Your number is {}.'.format(number))
+    return(int(number))
 
+n_sum = ask_user_for_number()
+m = 0
+for i in range(n_sum+1):
+   m += i
+print("Your number summed from 1 to {} is: {}".format(n_sum,m))
+
+n_sum_of_3s = ask_user_for_number()
+m = 0
+for i in range(n_sum_of_3s+1):
+    v = 3*i
+    if v > n_sum_of_3s:
+        break
+    m += v
+print("The multiples of 3 from 1 to {} is: {}".format(n_sum_of_3s,m))
+
+def product_from_1_to_n(n):
+    m = 1
+    for i in range(n):
+        m *= i+1
+    return(m)
+
+def sum_from_1_to_n(n):
+    m = 0
+    for i in range(n+1):
+        m += i
+    return(m)
+
+n_sum_or_product = ask_user_for_number()
+print('Choose from the following: \n 1. Sum from 1 to n \n 2. Product from 1 to n')
+choice = input("Choose option 1 or 2: ")
+if choice == '1':
+    print("Your number summed from 1 to {} is: {}.".format(n_sum_or_product, sum_from_1_to_n(n_sum_or_product)))
+elif choice == '2':
+    print("Your number multiplied from 1 to {} is: {}.".format(n_sum_or_product, product_from_1_to_n(n_sum_or_product)))
+else:
+    print('Error! Please choose either 1 or 2.')
 
